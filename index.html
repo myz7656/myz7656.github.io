@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-20 20:31:19 / 修改时间：20:35:27" itemprop="dateCreated datePublished" datetime="2021-05-20T20:31:19+08:00">2021-05-20</time>
+              <time title="创建时间：2021-05-20 20:31:19 / 修改时间：20:45:33" itemprop="dateCreated datePublished" datetime="2021-05-20T20:31:19+08:00">2021-05-20</time>
             </span>
 
           
@@ -191,7 +191,7 @@
 <li>跨平台 UI 渲染引擎：UI 框架中负责渲染的模块，下文简称「渲染引擎」</li>
 </ul>
 <p>在讲原理之前，我们先了解 UI 框架的演进历史，先搞清楚当前 UI 框架的问题与局限性，才能做出更合适现阶段的设计。</p>
-<h3 id="1、UI-框架演进"><a href="#1、UI-框架演进" class="headerlink" title="1、UI 框架演进"></a>1、UI 框架演进</h3><p>UI 框架通常会有几个部分组成</p>
+<h3 id="UI-框架演进"><a href="#UI-框架演进" class="headerlink" title="UI 框架演进"></a>UI 框架演进</h3><p>UI 框架通常会有几个部分组成</p>
 <ul>
 <li>内核：源码管理（打包、加载） + 渲染引擎（排版、绘制、合成、事件、动画）</li>
 <li>生态：扩展对外开放，丰富组件，完善开发者生态</li>
@@ -201,12 +201,12 @@
 <p>「内核」是 UI 框架的最核心的部分，它提供扩展能力，可以由第三方参与，提供各种组件，来完善整个开发着生态。通常来讲，开发配套则是由使用该技术的公司根据自主定制研发。</p>
 <p>从 PC 互联网转向移动互联网的过程中，跨平台 UI 开发成为热门领域，先后涌现了较多的 UI 框架，早期以 WebView 技术的 PhoneGap、AppCan 为代表，中期以 React Native、Weex 为代表，近期以 Flutter 为代表。为什么 UI 框架会成为大前端的热门技术？一套代码，多端复用，可以节约多个端的开发成本，对公司开说确实能省下一笔不小的人力成本。按我的实际经验来看，双端复用，大致能节约 40% 左右的成本，统计方法主要是看两点：HC 和每个迭代完成需求的数量。当然随着对跨平台技术的逐步熟练，这个数据还会更高一些，还是相当可观的。其他方面则取决于市场的需求，每个阶段有不同的诉求，UI 框架解决的问题也不一样，总体概况如下</p>
 <p><img src="/images/%E6%BC%94%E8%BF%9B.jpg" alt="演进"></p>
-<h4 id="1-1-第一阶段：WebView-技术为代表"><a href="#1-1-第一阶段：WebView-技术为代表" class="headerlink" title="1.1 第一阶段：WebView 技术为代表"></a>1.1 第一阶段：WebView 技术为代表</h4><p>重点解决的问题</p>
+<h4 id="第一阶段：WebView-技术为代表"><a href="#第一阶段：WebView-技术为代表" class="headerlink" title="第一阶段：WebView 技术为代表"></a>第一阶段：WebView 技术为代表</h4><p>重点解决的问题</p>
 <ul>
 <li>开发成本：快速构建 App、多平台复用</li>
 </ul>
 <p>早期 App 开始流行，市场没有足够的 Android、iOS 开发者，如何最高效、最快速搭建一个 App 是早期跨平台 UI 框架要解决的主要问题，所以 PhoneGap、AppCan 兴起。</p>
-<h4 id="1-2-第二阶段：React-Native-为代表"><a href="#1-2-第二阶段：React-Native-为代表" class="headerlink" title="1.2 第二阶段：React Native 为代表"></a>1.2 第二阶段：React Native 为代表</h4><p>重点解决的问题</p>
+<h4 id="第二阶段：React-Native-为代表"><a href="#第二阶段：React-Native-为代表" class="headerlink" title="第二阶段：React Native 为代表"></a>第二阶段：React Native 为代表</h4><p>重点解决的问题</p>
 <ul>
 <li>开发成本：所见即所得，多平台复用</li>
 <li>性能体验</li>
@@ -223,7 +223,7 @@
 </ul>
 <p>React Native 正是在这样的背景下出现的，将 Web 技术 React 应用到 App 开发技术栈上（Weex 亦是如此，赶时髦而已）。它在动态化和包大小控制方面有比较大的优势，性能方面一般。</p>
 <p>我使用过 React Native 一年多时间，具体参与过很多业务开发，性能和官方宣传的有很大差距，和 Native 根本没法比。关于 React Native 的原理，可以看我的另外一篇文章：<a target="_blank" rel="noopener" href="https://zanxzcf288.feishu.cn/docs/doccnazWQUcHdPr65P8myCMwQfb?from=from_copylink">深入理解 React Native 技术原理</a>（暂时使用飞书文档，后续再出正式文章）。性能不好的本质原因还是 JavaScript 这个弱鸡语言，但是没办法，在动态化和控制包大小方面没有比这个更廉价的方案（不是没其他方案，下面会详细说到），哪怕 Flutter 出现之后，各个公司还是想在 Flutter 上再加一层 JavaScript 的封装，号称 Web on Flutter。</p>
-<h4 id="1-3-第三阶段：Flutter-为代表"><a href="#1-3-第三阶段：Flutter-为代表" class="headerlink" title="1.3 第三阶段：Flutter 为代表"></a>1.3 第三阶段：Flutter 为代表</h4><p>重点解决的问题</p>
+<h4 id="第三阶段：Flutter-为代表"><a href="#第三阶段：Flutter-为代表" class="headerlink" title="第三阶段：Flutter 为代表"></a>第三阶段：Flutter 为代表</h4><p>重点解决的问题</p>
 <ul>
 <li>开发效率：所见即所得，多平台复用</li>
 <li>性能体验：（AOT 模式）与 Native 一样的性能</li>
@@ -233,8 +233,8 @@
 <p>在性能方面，Flutter 可以和 Native 匹敌，它和 Native 有一样精简的渲染流程，同样支持 GPU 加速，具体原理可以看我的这篇文章：<a target="_blank" rel="noopener" href="https://zanxzcf288.feishu.cn/docs/doccnBbeE3c0wdJlb4VNxHCEVEd?from=from_copylink">Flutter 高性能渲染原理</a>（暂时使用飞书文档，后续再出正式文章）。</p>
 <p>但可惜的是，它不支持动态化，这也是 Web on Flutter 的重要原因。无论是什么框架，都会无端增加 App 包大小，只是框架本身带来的包大小就很大，更不用说业务代码了，Flutter 这个方面表现就很差。相比而言，React Native 可以通过动态下发 JavaScript 的方式减小安装包大小，这方面更优秀一些。Web on Flutter 的方案可以解决动态化的问题，同时相比 React Native 而言，双端一致性会更好，但是会损失性能体验。</p>
 <p>未来的 UI 框架应该如何设计，既满足性能的诉求，也满足动态化的诉求呢？在聊这个话题之前，必须先要理解 UI 框架的技术原理。</p>
-<h3 id="2、UI-框架原理"><a href="#2、UI-框架原理" class="headerlink" title="2、UI 框架原理"></a>2、UI 框架原理</h3><p>UI 框架主要分为源码管理和渲染引擎两个部分。</p>
-<h4 id="2-1-源码管理"><a href="#2-1-源码管理" class="headerlink" title="2.1 源码管理"></a>2.1 源码管理</h4><p>源码的管理可大致分为「打包」和「运行」两个阶段，打包更多是通过线下 CLI 打包工具链去完成，运行是实际执行打包后的生成文件，这两个阶段分别注重的点不一样</p>
+<h3 id="UI-框架原理"><a href="#UI-框架原理" class="headerlink" title="UI 框架原理"></a>UI 框架原理</h3><p>UI 框架主要分为源码管理和渲染引擎两个部分。</p>
+<h4 id="源码管理"><a href="#源码管理" class="headerlink" title="源码管理"></a>源码管理</h4><p>源码的管理可大致分为「打包」和「运行」两个阶段，打包更多是通过线下 CLI 打包工具链去完成，运行是实际执行打包后的生成文件，这两个阶段分别注重的点不一样</p>
 <p>打包阶段</p>
 <ul>
 <li>开发期：主要解决的是「开发效率」<ul>
@@ -263,20 +263,20 @@
 <li>执行阶段</li>
 </ul>
 <p>如果设计一个新的 UI 框架，务必要把源码管理的各个方面实现好，对使用者将会是比较友好的。</p>
-<h4 id="2-2-渲染引擎"><a href="#2-2-渲染引擎" class="headerlink" title="2.2 渲染引擎"></a>2.2 渲染引擎</h4><p>渲染引擎主要的工作分为两个部分</p>
+<h4 id="渲染引擎"><a href="#渲染引擎" class="headerlink" title="渲染引擎"></a>渲染引擎</h4><p>渲染引擎主要的工作分为两个部分</p>
 <ul>
 <li>渲染：构建 Tree、排版、绘制、合成</li>
 <li>交互：事件</li>
 <li>动画</li>
 </ul>
-<h5 id="2-2-1-线程模型设计"><a href="#2-2-1-线程模型设计" class="headerlink" title="2.2.1 线程模型设计"></a>2.2.1 线程模型设计</h5><p>一般来说，渲染引擎可以设计为两个线程：UI 线程和 GPU 线程</p>
+<h5 id="线程模型设计"><a href="#线程模型设计" class="headerlink" title="线程模型设计"></a>线程模型设计</h5><p>一般来说，渲染引擎可以设计为两个线程：UI 线程和 GPU 线程</p>
 <ul>
 <li>UI 线程：构建 Tree、排版、绘制、事件</li>
 <li>GPU 线程：合成</li>
 </ul>
 <p>UI 线程的工作会比较多，是比较重的一个线程。事件放在 UI 线程的好处是显示和交互是一体的，不会存在事件发生的时候 UI 还有很多未完成的操作。典型的例子是 WebView，WebView 的事件处理是单独的线程，所以一个长列表，你可以无限滚动，如果 UI 线程跟不上，就会导致白屏问题，本质上还是线程设计的问题。</p>
-<h5 id="2-2-2-构建-Tree"><a href="#2-2-2-构建-Tree" class="headerlink" title="2.2.2 构建 Tree"></a>2.2.2 构建 Tree</h5><p>界面上的每一个元素叫做一个 Node，每个 Node 都是由一个树形结构 Tree 来管理的。Tree 的生成可以有不同的方式，但最原子的操作无非是 CRUD（增、删、查、改），这个部分没什么好说的，实现 CRUD 的 API 即可。</p>
-<h5 id="2-2-3-排版"><a href="#2-2-3-排版" class="headerlink" title="2.2.3 排版"></a>2.2.3 排版</h5><p>排版过程主要是「Measure」和「Layout」，Measure 主要是计算元素大小，得到 Size，Layout 主要是给元素定位，得到元素相对位置 Offset，或者绝对位置 Position，「位置 + 大小」确定了一个元素在屏幕上的显示区域。</p>
+<h5 id="构建-Tree"><a href="#构建-Tree" class="headerlink" title="构建 Tree"></a>构建 Tree</h5><p>界面上的每一个元素叫做一个 Node，每个 Node 都是由一个树形结构 Tree 来管理的。Tree 的生成可以有不同的方式，但最原子的操作无非是 CRUD（增、删、查、改），这个部分没什么好说的，实现 CRUD 的 API 即可。</p>
+<h5 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h5><p>排版过程主要是「Measure」和「Layout」，Measure 主要是计算元素大小，得到 Size，Layout 主要是给元素定位，得到元素相对位置 Offset，或者绝对位置 Position，「位置 + 大小」确定了一个元素在屏幕上的显示区域。</p>
 <p>这个过程中最复杂的是选择什么样的排版算法，不同的方式对于节点计算差别很大（例如 CSS 盒子模型有 static、absolute、relative 等排版方式）。不过无论是怎么排，最终只是「父决定子」还是「子决定父」两种类型，以下面的 DOM 结构进行说明</p>
 <p><img src="/images/%E6%8E%92%E7%89%88%E6%A0%91.jpg" alt="排版树"></p>
 <p>说明：绿色是叶节点，红色是父节点，max-w / max-h 是最大值，w / h 是期望值，假设窗口大小是 800 x 600</p>
@@ -299,7 +299,7 @@
 </ul>
 <p>排版过程完成，元素的「位置 + 大小」就已经确定，在屏幕上的区域也就确定了。</p>
 <p>排版算法最高效的是 absolute 排版，全部都是「父决定子」的方式，没有回溯的过程。Flexbox 排版算法也是「父决定子」的排版算法，性能也比较好。从 React Native 的使用经验上看，基本上 Flexbox 可以满足绝大多数的业务场景，而且也是比较标准化的排版算法，是个不错的选择。自定义排版算法不建议，因为会增加很多学习成本，Android 一堆的 Layout 控件，看着就很烦，而且很多控件排版性能也很差。</p>
-<h5 id="2-2-4-绘制、合成"><a href="#2-2-4-绘制、合成" class="headerlink" title="2.2.4 绘制、合成"></a>2.2.4 绘制、合成</h5><p>绘制（Paint）的过程就是将每个 Node 变成「图层」的过程，图层的大小是自己的 Size。这一步比较重要的是平台 UI 控件的绘制，例如 Flutter 的 PlatformView。因为并不是每个 UI 框架都能提供完整的 UI 控件，所以必须为平台 UI 控件的定制留出扩展，让开发者自定义。</p>
+<h5 id="绘制、合成"><a href="#绘制、合成" class="headerlink" title="绘制、合成"></a>绘制、合成</h5><p>绘制（Paint）的过程就是将每个 Node 变成「图层」的过程，图层的大小是自己的 Size。这一步比较重要的是平台 UI 控件的绘制，例如 Flutter 的 PlatformView。因为并不是每个 UI 框架都能提供完整的 UI 控件，所以必须为平台 UI 控件的定制留出扩展，让开发者自定义。</p>
 <p>这个图层并不一定是指一张内存中的 Bitmap，它只是一个虚拟概念，它可以是一些绘制操作的集合，还没有真正绘制到 Canvas 上。</p>
 <p>合成（Composite），也叫光栅化，它的过程是按照图层的 z-order 排序，依次将图层绘制到同一个画布 Canvas 上，把图层合成像素。Canvas 可以是 GPU 类型 Surface 提供的，也可以是 CPU 类型的 Surface 来提供。这里主要注意两点</p>
 <ul>
@@ -312,7 +312,7 @@
 <p>完整的流程示意图如下</p>
 <p><img src="/images/%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E6%B5%81%E7%A8%8B.jpg" alt="渲染流程图"></p>
 <p>绘制和合成比较依赖图形库，比较好的选择是 Skia 这个 2D 图形库，它是跨平台的，从根本上解决了绘制的一致性的问题。经过多年的发展，它不仅支持 CPU 渲染，也支持多种 GPU 图形库的 backend，对主流 GPU 3D 图形引擎（OpenGL ES、Metal 等）都做了封装，主要是学习下 Skia 的 API 如何使用，绘制和合成这块问题就不大了。</p>
-<h5 id="2-2-5-事件"><a href="#2-2-5-事件" class="headerlink" title="2.2.5 事件"></a>2.2.5 事件</h5><p>事件主要分为两个部分：事件抽象、事件传递。</p>
+<h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><p>事件主要分为两个部分：事件抽象、事件传递。</p>
 <p><b>事件抽象：</b>DOWN（按下）、UP（抬起）、MOVE（移动）、HOVER（悬停），其他事件都可以用这些组合得到</p>
 <ul>
 <li>click 事件：本质上是 DOWN 和 UP 的组合，时间间隔较短</li>
@@ -322,7 +322,7 @@
 </ul>
 <p><b>事件传递：</b>传递过程包括捕获和冒泡。个人认为 W3C 的事件模型是比较优秀的，捕获阶段主要是做 hit test，看事件发生点 [x,y] 是否落到控件的显示区域内，这里需要考虑 z-order，不能直接遍历 Tree。下面是 W3C 事件冒泡的示意图</p>
 <p><img src="/images/%E4%BA%8B%E4%BB%B6.jpg" alt="事件"></p>
-<h5 id="2-2-6-动画"><a href="#2-2-6-动画" class="headerlink" title="2.2.6 动画"></a>2.2.6 动画</h5><p>动画的本质是定时触发 Node 的属性变化，属性变化再引起重排或者重绘。如果变化的属性会影响布局，则重排、重排触发重绘。如果变化的属性只影响显示，则只做重绘。动画的分类可简单分为数值动画、帧动画、自定义动画。</p>
+<h5 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h5><p>动画的本质是定时触发 Node 的属性变化，属性变化再引起重排或者重绘。如果变化的属性会影响布局，则重排、重排触发重绘。如果变化的属性只影响显示，则只做重绘。动画的分类可简单分为数值动画、帧动画、自定义动画。</p>
 <p><b>数值动画：</b>设定总时间 T，动画数值 START，动画数值 END 这三个固定值，以当前时间 t 作为变化量，通过函数（一般叫做缓动函数）计算得出当前的动画数值 value。</p>
 <p>举例：元素消耗 1s 从 A 点水平匀速移动到 B 点</p>
 <ul>
@@ -341,13 +341,13 @@
 <li>扩展性：动画状态的过程监听、如何自定义动画</li>
 </ul>
 <p>这些也是设计动画的时候需要考虑的点。</p>
-<h4 id="2-3-总结"><a href="#2-3-总结" class="headerlink" title="2.3 总结"></a>2.3 总结</h4><p>以上，是整个 UI 框架的核心原理，我在 5 年前写的 UI 框架就是按上述思路做的：<a target="_blank" rel="noopener" href="https://github.com/myz7656/smart-ui%EF%BC%88Windows">https://github.com/myz7656/smart-ui（Windows</a> 平台上的 UI 框架），实现一个精简版的 UI 框架并不复杂。回到现阶段主流 UI 框架存在的问题</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>以上，是整个 UI 框架的核心原理，我在 5 年前写的 UI 框架就是按上述思路做的：<a target="_blank" rel="noopener" href="https://github.com/myz7656/smart-ui%EF%BC%88Windows">https://github.com/myz7656/smart-ui（Windows</a> 平台上的 UI 框架），实现一个精简版的 UI 框架并不复杂。回到现阶段主流 UI 框架存在的问题</p>
 <ul>
 <li>React Native：性能差、双端不一致</li>
 <li>Flutter：无法动态化、无法解决 App 包大小的问题</li>
 </ul>
 <p>未来的 UI 框架应该如何设计去满足这些需求呢？</p>
-<h3 id="3、未来展望：全场景、积木式、自绘"><a href="#3、未来展望：全场景、积木式、自绘" class="headerlink" title="3、未来展望：全场景、积木式、自绘"></a>3、未来展望：全场景、积木式、自绘</h3><p>重点解决的问题</p>
+<h3 id="未来展望：全场景、积木式、自绘"><a href="#未来展望：全场景、积木式、自绘" class="headerlink" title="未来展望：全场景、积木式、自绘"></a>未来展望：全场景、积木式、自绘</h3><p>重点解决的问题</p>
 <ul>
 <li>开发成本</li>
 <li>性能体验</li>
@@ -432,7 +432,7 @@
 <p>整体架构设计（两段式架构）<br><img src="/images/%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="架构图"></p>
 <p>渲染引擎通过 DOM API 的提供调用，在高性能场景，可以实现一个「轻量级 WebCore」，动态化场景基本可以看作是实现一个「轻量级 WebView」。</p>
 <p>这将会是我以后业余时间长期投入的个人项目，继续把 smart-ui 发扬光大（看完 Flutter 源码之后，再看 smart-ui，还是太嫩了）。</p>
-<h3 id="4、补充说明"><a href="#4、补充说明" class="headerlink" title="4、补充说明"></a>4、补充说明</h3><h4 id="4-1-性能与动态化的矛盾"><a href="#4-1-性能与动态化的矛盾" class="headerlink" title="4.1 性能与动态化的矛盾"></a>4.1 性能与动态化的矛盾</h4><p>本质上来说，动态化与性能是没法同时满足的。极致的性能需要编译成二进制可执行文件，而 Android、iOS 系统是禁止二进制可执行文件下发的。所以能动态下发的，可以是</p>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><h4 id="性能与动态化的矛盾"><a href="#性能与动态化的矛盾" class="headerlink" title="性能与动态化的矛盾"></a>性能与动态化的矛盾</h4><p>本质上来说，动态化与性能是没法同时满足的。极致的性能需要编译成二进制可执行文件，而 Android、iOS 系统是禁止二进制可执行文件下发的。所以能动态下发的，可以是</p>
 <ul>
 <li>中间码：在目标平台上通过虚拟机解释执行</li>
 <li>源代码：在目标平台上通过虚拟机先编译成中间码，再解释执行</li>
@@ -440,7 +440,7 @@
 <p>Flutter 可以动态下发中间码（对框架进行改造），Dart VM 加载中间码解释执行。而通常对接 Web 技术的动态化方案采用下发 JavaScript 源代码，V8 / JavaScriptCore 通过编译源代码的方式执行。无论哪种方式，性能都并不会很好，那是否可以像 Android Dalvik 虚拟机一样的 AOT 机制，下发中间码，在目标平台编译成二进制码呢？V8 引擎在编译的时候可选择是否带 JIT 编译器，JIT 编译器的作用就是将「热点中间码」编译成二进制码执行，以提高性能。</p>
 <p>V8 执行过程<br><img src="/images/JIT.jpg" alt="JIT"></p>
 <p>既然 Flutter 可以在编译的时候可以编译成二进制，理论上可以通过改造 Dart VM，将 AOT 编译器集成到 UI 框架中，将下发的中间码编译成二进制码，个人认为这条路也是走得通的，不过成本比较高，而且带上 AOT 编译器，整个 UI 框架的包大小估计会增大不少（不过这块没太做较深入的了解，也可能因为我理解有限，这条路走不通）。</p>
-<h4 id="4-2-AOT-与-JIT"><a href="#4-2-AOT-与-JIT" class="headerlink" title="4.2 AOT 与 JIT"></a>4.2 AOT 与 JIT</h4><p>一般来说，编译器包括三个部分</p>
+<h4 id="AOT-与-JIT"><a href="#AOT-与-JIT" class="headerlink" title="AOT 与 JIT"></a>AOT 与 JIT</h4><p>一般来说，编译器包括三个部分</p>
 <ul>
 <li>前端：用于分析各种语言的源代码语法，形成语法树，用于生成中间码（如 Java 字节码、LLVM 中间码等）</li>
 <li>优化器：对中间码进行优化，使代码更高效</li>
